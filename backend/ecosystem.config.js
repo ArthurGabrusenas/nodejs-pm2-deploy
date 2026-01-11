@@ -5,7 +5,7 @@ const USER = process.env.DEPLOY_USER;
 const HOST = process.env.HOST;
 const REPO = process.env.REPO;
 const BRANCH = process.env.BRANCH;
-const PATH = process.env.DEPLOY_PATH;
+const BACKEND_PATH = process.env.DEPLOY_BACKEND_PATH;
 const KEY = process.env.KEY;
 
 module.exports = {
@@ -13,7 +13,6 @@ module.exports = {
     {
       name: 'app',
       script: 'dist/app.js',
-      cwd: PATH,
       instances: 1,
       exec_mode: 'fork',
       watch: false,
@@ -29,13 +28,13 @@ module.exports = {
       host: HOST,
       ref: BRANCH,
       repo: REPO,
-      path: PATH,
+      path: BACKEND_PATH,
       key: KEY,
-      'pre-deploy': `scp -i ${KEY} .env.deploy ${USER}@${HOST}:${PATH}/.env`,
+      'pre-deploy': `scp -i ${KEY} .env.deploy ${USER}@${HOST}:${BACKEND_PATH}`,
       'post-deploy': [
-        `scp -i ${KEY} ./dist/ ${USER}@${HOST}:${PATH}/dist`,
-        `scp -i ${KEY} -r package.json package-lock.json ${USER}@${HOST}:${PATH}`,
-        `cd ${PATH} && npm ci && npm run build`,
+        `scp -i ${KEY} ./dist/ ${USER}@${HOST}:${BACKEND_PATH}/dist`,
+        `scp -i ${KEY} -r package.json package-lock.json ${USER}@${HOST}:${BACKEND_PATH}`,
+        `cd ${BACKEND_PATH} && npm ci && npm run build`,
         `pm2 startOrReload ecosystem.config.js --only app --env production`,
       ].join('&&'),
     },
