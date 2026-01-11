@@ -1,11 +1,11 @@
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '.env.deploy') });
 
-const USER = process.env.USER;
+const USER = process.env.DEPLOY_USER;
 const HOST = process.env.HOST;
 const REPO = process.env.REPO;
 const BRANCH = process.env.BRANCH;
-const PATH = process.env.PATH;
+const PATH = process.env.DEPLOY_PATH;
 const KEY = process.env.KEY;
 
 module.exports = {
