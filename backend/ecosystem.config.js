@@ -30,6 +30,7 @@ module.exports = {
       repo: REPO,
       path: BACKEND_PATH,
       key: KEY,
+      ssh_options: 'StrictHostKeyChecking=no',
       'pre-deploy-local': `scp -i ${KEY} -o IdentitiesOnly=yes .env.deploy ${USER}@${HOST}:${BACKEND_PATH}/.env`,
       'post-deploy': [
         `scp -i ${KEY} ./dist/ ${USER}@${HOST}:${BACKEND_PATH}/dist/`,
