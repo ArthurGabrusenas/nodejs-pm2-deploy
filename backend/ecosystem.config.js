@@ -31,7 +31,7 @@ module.exports = {
       repo: REPO,
       path: PATH,
       key: KEY,
-      'pre-deploy': `scp .env.deploy ${USER}@${HOST}:${PATH}/.env`,
+      'pre-deploy': `scp -i ${KEY} .env.deploy ${USER}@${HOST}:${PATH}/.env`,
       'post-deploy': [
         `scp -i ${KEY} ./dist/ ${USER}@${HOST}:${PATH}/dist`,
         `scp -i ${KEY} -r package.json package-lock.json ${USER}@${HOST}:${PATH}`,
