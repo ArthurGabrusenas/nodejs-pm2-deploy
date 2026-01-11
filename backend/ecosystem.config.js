@@ -30,9 +30,9 @@ module.exports = {
       repo: REPO,
       path: BACKEND_PATH,
       key: KEY,
-      'pre-deploy': `scp -i ${KEY} .env.deploy ${USER}@${HOST}:${BACKEND_PATH}`,
+      'pre-deploy': `scp -i ${KEY} .env.deploy ${USER}@${HOST}:${BACKEND_PATH}/`,
       'post-deploy': [
-        `scp -i ${KEY} ./dist/ ${USER}@${HOST}:${BACKEND_PATH}/dist`,
+        `scp -i ${KEY} ./dist/ ${USER}@${HOST}:${BACKEND_PATH}/dist/`,
         `scp -i ${KEY} -r package.json package-lock.json ${USER}@${HOST}:${BACKEND_PATH}`,
         `cd ${BACKEND_PATH} && npm ci && npm run build`,
         `pm2 startOrReload ecosystem.config.js --only app --env production`,
