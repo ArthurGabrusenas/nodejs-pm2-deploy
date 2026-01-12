@@ -6,10 +6,12 @@ const BRANCH = process.env.BRANCH;
 const FRONTEND_PATH = process.env.DEPLOY_FRONTEND_PATH;
 const HOST = process.env.HOST;
 const KEY = process.env.KEY;
+const USER = process.env.DEPLOY_USER;
 
 module.exports = {
   deploy: {
     production: {
+      user: USER,
       ref: BRANCH,
       repo: REPO,
       host: HOST,
