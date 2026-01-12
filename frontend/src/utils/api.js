@@ -138,8 +138,12 @@ class Api {
       .then(getResponse)
   }
   }
-  // Замените на адрес вашего бэкенда
-  const api = new Api('http://localhost:3000');
+
+  const API_BASE_URL = (process.env.REACT_APP_API_BASE_URL && process.env.REACT_APP_API_BASE_URL.trim())
+    || (process.env.NODE_ENV === 'production'
+      ? `https://api.${window.location.hostname}`
+      : 'http://localhost:3000');
+  const api = new Api(API_BASE_URL);
   
   export default api;
   
