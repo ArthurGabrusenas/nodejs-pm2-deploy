@@ -31,7 +31,7 @@ module.exports = {
       path: BACKEND_PATH,
       key: KEY,
       ssh_options: 'StrictHostKeyChecking=no',
-      'pre-deploy-local': `scp -i ${KEY} -o IdentitiesOnly=yes .env.deploy ${USER}@${HOST}:${BACKEND_PATH}/.env`,
+      'pre-deploy-local': `scp -i ${KEY} -o IdentitiesOnly=yes .env.deploy ${USER}@${HOST}:${BACKEND_PATH}/current/backend/.env`,
       'post-deploy': [
         `cd ${BACKEND_PATH}/current/backend && npm ci && npm run build`,
         `pm2 startOrReload ecosystem.config.js --only app --env production`,
