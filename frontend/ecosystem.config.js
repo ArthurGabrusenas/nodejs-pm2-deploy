@@ -18,7 +18,7 @@ module.exports = {
       path: FRONTEND_PATH,
       key: KEY,
       ssh_options: 'StrictHostKeyChecking=no',
-      'post-deploy': `cd ${FRONTEND_PATH}/current/frontend && npm ci && npm run build`
+      'post-deploy': `cd ${FRONTEND_PATH}/current/frontend && npm install && npm run build`
     },
   },
 };
