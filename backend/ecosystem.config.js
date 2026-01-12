@@ -34,7 +34,6 @@ module.exports = {
       'pre-deploy-local': `scp -i ${KEY} -o IdentitiesOnly=yes .env.deploy ${USER}@${HOST}:${BACKEND_PATH}/.env`,
       'post-deploy': [
         `cd ${BACKEND_PATH}/current/backend && npm ci && npm run build`,
-        `mv dist ${BACKEND_PATH}`,
         `pm2 startOrReload ecosystem.config.js --only app --env production`,
       ].join('&&'),
     },
